@@ -34,7 +34,7 @@ jobs:
         poetry run pyinstaller --onefile src/main.py
 
     - name: Upload executable
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: witd-${{ matrix.os }}
         path: dist/
