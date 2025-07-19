@@ -1,7 +1,15 @@
+import subprocess
 import re
 import json
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
 
+
+def check_has_dig()->bool:
+    try:
+        subprocess.check_output(["dig", "-h"])
+        return True
+    except FileNotFoundError:
+        return False
 
 def build_parser() -> ArgumentParser:
     parser = ArgumentParser(

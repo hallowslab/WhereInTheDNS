@@ -5,7 +5,7 @@ from time import sleep
 from argparse import Namespace
 from pathlib import Path
 
-from utils import build_parser, load_config, expand_pattern
+from utils import build_parser, load_config, expand_pattern, check_has_dig
 
 
 def run_dig(domain, server=None, reverse=False):
@@ -57,6 +57,10 @@ def main() -> None:
     args: Namespace = build_parser().parse_args()
     config: dict[str, list[str]] = {}
     domain: str = args.domain
+
+    if not check_has_dig():
+        print("You need to install dig")
+        sys.exit(1)
 
     # If provided empty string it points to "." and shouldn't resolve to a file
     if Path(args.config_file).is_file():
