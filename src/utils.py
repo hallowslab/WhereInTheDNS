@@ -3,6 +3,7 @@ import re
 import json
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
 
+from _version import __version__
 
 def check_has_dig()->bool:
     try:
@@ -13,7 +14,7 @@ def check_has_dig()->bool:
 
 def build_parser() -> ArgumentParser:
     parser = ArgumentParser(
-        prog="Where in the DNS",
+        prog="witd",
         description="Queries nameservers provided in a config file to find the machine hosting the domain",
         epilog="""
     Examples:
@@ -34,6 +35,9 @@ def build_parser() -> ArgumentParser:
     )
     parser.add_argument(
         "-wt", "--wait-timer", default=None, help="Time to wait between requests"
+    )
+    parser.add_argument(
+        "--version", action="version", version=f"witd v{__version__}", help="Show program version"
     )
     return parser
 

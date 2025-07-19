@@ -7,6 +7,7 @@ from pathlib import Path
 
 from utils import build_parser, load_config, expand_pattern, check_has_dig
 
+from _version import __version__
 
 def run_dig(domain, server=None, reverse=False):
     cmd = ["dig", "+short"]
@@ -57,6 +58,10 @@ def main() -> None:
     args: Namespace = build_parser().parse_args()
     config: dict[str, list[str]] = {}
     domain: str = args.domain
+
+    if args.version:
+        print(f"Version: {__version__}")
+        sys.exit(1)
 
     if not check_has_dig():
         print("You need to install dig")

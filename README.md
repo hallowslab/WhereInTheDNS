@@ -68,6 +68,6 @@ poetry run main.py -d <domain>
 - Build Standalone Executable
     * Use Poetry + PyInstaller:
 ```bash
-poetry run pyinstaller --onefile dns_checker/__main__.py
+poetry run pyinstaller --onefile --name witd dns_checker/__main__.py
 ```
 Output: dist/witd (or .exe on Windows)
