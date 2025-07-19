@@ -1,0 +1,40 @@
+name: CI-CD
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install Poetry
+      run: pipx install poetry
+
+    - name: Install dependencies with Poetry
+      run: poetry install --with dev
+
+    - name: Build executable with PyInstaller
+      run: |
+        poetry run pyinstaller --onefile src/main.py
+
+    - name: Upload executable
+      uses: actions/upload-artifact@v3
+      with:
+        name: witd-${{ matrix.os }}
+        path: dist/
