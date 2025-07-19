@@ -35,6 +35,9 @@ def build_parser() -> ArgumentParser:
     parser.add_argument(
         "-wt", "--wait-timer", default=None, help="Time to wait between requests"
     )
+    parser.add_argument(
+        "-v", "--version", action="store_true", help="Show program version"
+    )
     return parser
 
 
