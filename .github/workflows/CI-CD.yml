@@ -33,6 +33,15 @@ jobs:
       run: |
         poetry run pyinstaller --onefile --name witd src/main.py
 
+    - name: Rename executable
+      run: |
+        OS_NAME=${{ matrix.os }}
+        EXT=""
+        if [[ "$OS_NAME" == "windows-latest" ]]; then
+          EXT=".exe"
+        fi
+
+        mv dist/main${EXT} dist/witd-${{ matrix.os }}${EXT}
     - name: Upload executable
       uses: actions/upload-artifact@v4
       with:
