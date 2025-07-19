@@ -1,0 +1,10 @@
+{
+    "nameservers": [
+        "ns1.example.com",
+        "dns1.example.com"
+    ],
+    "hosts": [
+        "machine.example.com",
+        "range-of-machines[1-100].example.com"
+    ]
+}
