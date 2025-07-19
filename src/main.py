@@ -61,6 +61,7 @@ def main() -> None:
 
     if args.version:
         print(f"Version: {__version__}")
+        sys.exit(1)
 
     if not check_has_dig():
         print("You need to install dig")
