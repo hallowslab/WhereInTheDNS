@@ -41,7 +41,7 @@ jobs:
           EXT=".exe"
         fi
 
-        mv dist/main${EXT} dist/witd-${{ matrix.os }}${EXT}
+        mv dist/witd${EXT} dist/witd-${{ matrix.os }}${EXT}
     - name: Upload executable
       uses: actions/upload-artifact@v4
       with:
